@@ -2,7 +2,11 @@
   "name": "snipeit-playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:test": "cross-env test_env=test npx playwright test",
+    "test:development": "cross-env test_env=development npx playwright test",
+    "test:production": "cross-env test_env=production npx playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -10,5 +14,9 @@
   "devDependencies": {
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.5"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7"
   }
 }
