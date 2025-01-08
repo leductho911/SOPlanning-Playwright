@@ -26,13 +26,13 @@ export class PlanningPage extends BasePage {
     }
 
     async enterTitle(title: string) {
-        printLog(" [PlanningPage] Enter title")
+        printLog(` [PlanningPage] Enter title: ${title}`)
         await this.inputToTextbox("Title", title)
     }
 
     async selectProject(project: string) {
-        printLog(" [PlanningPage] Select project")
-        await this.selectCustomComboboxSingle(this.commonLocators.commonComboBox("Project"), this.locators.cboProject, project)
+        printLog(` [PlanningPage] Select project: ${project}`)
+        await this.selectCustomComboboxSingle("Project", this.locators.cboProject, project)
     }
 
     async verifyModalTitle(expectedTitle: string) {
@@ -46,6 +46,11 @@ export class PlanningPage extends BasePage {
         await this.clickElement(this.locators.btnAddTask)
     }
 
-
+    async selectUser(users: string[]) {
+        for (const user of users) {
+            printLog(` [PlanningPage] Select user: ${user}`)
+            await this.selectCustomComboboxMultiple("User", this.locators.cboUser, user)
+        }
+    }
 
 }

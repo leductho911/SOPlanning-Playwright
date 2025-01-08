@@ -17,6 +17,7 @@ test('Add task', async () => {
     await pm.onPlanningPage.clickAddTaskButton()
     await pm.onPlanningPage.enterTitle("New task 01")
     await pm.onPlanningPage.selectProject("Test project 1 (test1) ")
+    await pm.onPlanningPage.selectUser(["Test people 1 - user1", "Test people 2 - user2"])
 
     printLog("VP: Verify modal title")
     await pm.onPlanningPage.verifyModalTitle("New task")

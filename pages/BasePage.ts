@@ -30,6 +30,10 @@ export class CommonLocators {
     return `//label[contains(text(), '${text}')]/following-sibling::div//span[@role='textbox']`
   }
 
+  public commonComboBoxMultiple(text: string) {
+    return `//label[contains(text(), '${text}')]/following-sibling::div//input[@role='searchbox']`
+  }
+
   public commonPTag(text: string) {
     return `//p[contains(., "${text}")]`
   }
@@ -56,10 +60,10 @@ export class BasePage {
    */
   public async waitForElementVisible(locator: string, waitTime: number = SHORT_TIME) {
     try {
-      printLog(`  Common action - Wait for element visible`, 'debug');
-      await this.getElement(locator).waitFor({ timeout: waitTime });
+      printLog(`  Common action - Wait for element visible`, 'debug')
+      await this.getElement(locator).waitFor({ timeout: waitTime })
     } catch (error) {
-      printLog(`Wait for element visible on browser: ${error}`, 'error');
+      printLog(`Wait for element visible on browser: ${error}`, 'error')
     }
   }
 
@@ -75,7 +79,7 @@ export class BasePage {
 
   public getElement(locator: string): Locator {
     printLog(`  Common action - Get Element: ${locator}`, 'debug')
-    return this.page.locator(locator);
+    return this.page.locator(locator)
   }
 
   public async enterText(locator: string, text: string) {
@@ -97,14 +101,20 @@ export class BasePage {
   /**
   * Selects an option from a custom combobox (single choice).
   *
-  * @param {string} parentLocator - The locator of the parent element that contains the combobox.
+  * @param {string} label - The label of the combobox.
   * @param {string} optionsLocator - The locator of the options element that contains the options to be selected.
   * @param {string} option - The text of the option to be selected.
   */
-  public async selectCustomComboboxSingle(parentLocator: string, optionsLocator: string, option: string) {
-    printLog(`  Common action - Select combobox`, 'debug');
-    await this.clickElement(parentLocator)
+  public async selectCustomComboboxSingle(label: string, optionsLocator: string, option: string) {
+    printLog(`  Common action - Select combobox single`, 'debug')
+    await this.clickElement(this.commonLocators.commonComboBox(label))
     await this.page.locator(optionsLocator).locator("li", { hasText: option }).click()
+  }
+
+  public async selectCustomComboboxMultiple(label: string, optionsLocator: string, option: string) {
+    printLog(`  Common action - Select combobox multiple`, 'debug')
+    await this.clickElement(this.commonLocators.commonComboBoxMultiple(label))
+    await this.page.locator(optionsLocator).locator("li[role='option']", { hasText: option }).click()
   }
 
 }
