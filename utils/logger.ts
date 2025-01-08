@@ -10,7 +10,7 @@ const logger = createLogger({
     })
   ),
   defaultMeta: {
-    service: 'NextGen Log -'
+    service: 'Project Log -'
   }
 });
 
