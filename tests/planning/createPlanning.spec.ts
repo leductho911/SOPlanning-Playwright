@@ -1,5 +1,5 @@
 import test from '@playwright/test';
-import { PageManager } from '../../pages/PageManager';
+import { PageManager } from '../../pages/page_manager';
 import { printLog } from '../../utils/logger';
 
 let pm: PageManager
