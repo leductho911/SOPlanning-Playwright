@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { NavigationPage } from "./NavigationPage";
-import { PlanningPage as PlanningPage } from "./PlanningPage";
-import { LoginPage } from "./LoginPage";
+import { NavigationPage } from "./navigation_page";
+import { PlanningPage as PlanningPage } from "./planning_page";
+import { LoginPage } from "./login_page";
 
 export class PageManager {
     private readonly page: Page;

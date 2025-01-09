@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test'
-import { BasePage, CommonLocators } from './BasePage'
+import { BasePage, CommonLocators } from './base_page'
 import ENV from '../utils/env'
 import { printLog } from '../utils/logger';
 

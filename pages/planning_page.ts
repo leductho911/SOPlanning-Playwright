@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from '@playwright/test'
-import { BasePage, CommonLocators } from './BasePage'
+import { BasePage, CommonLocators } from './base_page'
 import { printLog } from '../utils/logger';
 
 

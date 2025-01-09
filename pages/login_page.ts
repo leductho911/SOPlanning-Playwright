@@ -1,9 +1,9 @@
 import { Page } from '@playwright/test'
-import { BasePage, CommonLocators } from './BasePage'
+import { BasePage, CommonLocators } from './base_page'
 import ENV from '../utils/env'
 import { printLog } from '../utils/logger'
 
-class LoginPageLocator extends CommonLocators{
+class LoginPageLocator extends CommonLocators {
     // locator not dynamic
     readonly txtLogin = "//input[@name='login']"
     readonly txtPassword = "//input[@name='password']"
@@ -14,7 +14,7 @@ class LoginPageLocator extends CommonLocators{
     }
 }
 
-export class LoginPage extends BasePage{
+export class LoginPage extends BasePage {
 
     readonly locators: LoginPageLocator
 
@@ -34,11 +34,11 @@ export class LoginPage extends BasePage{
         await this.clickElement(this.commonLocators.commonButton("Login"))
     }
 
-    async enterUserName(username: string){
+    async enterUserName(username: string) {
         await this.enterText(this.locators.txtLogin, username)
     }
 
-    async enterPassword(password: string){
+    async enterPassword(password: string) {
         await this.enterText(this.locators.txtPassword, password)
     }
 }
