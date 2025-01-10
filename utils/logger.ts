@@ -10,7 +10,7 @@ const logger = createLogger({
     })
   ),
   defaultMeta: {
-    service: 'Project Log -'
+    service: 'Log -'
   }
 });
 
