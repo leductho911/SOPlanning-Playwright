@@ -1,23 +1,16 @@
-import test from '@playwright/test';
-import { PageManager } from '../../pages/page_manager';
+import { test } from '../../fixtures/fixtures';
 import { printLog } from '../../utils/logger';
+import { AddTaskInfo, initAddTaskInfo } from '../../utils/types';
 
-let pm: PageManager
+let addTaskInfo: AddTaskInfo
 
-test.beforeEach(async ({ page }) => {
-    pm = new PageManager(page)
-    printLog("Navigate to login page and login")
-    await pm.navigateTo.loginPage()
-    await pm.onLoginPage.login()
-})
-
-
-test('Add task', async () => {
+test('Add task', async ({ pm }) => {
+    addTaskInfo = await initAddTaskInfo()
     printLog("Add task")
     await pm.onPlanningPage.clickAddTaskButton()
-    await pm.onPlanningPage.enterTitle("New task 01")
-    await pm.onPlanningPage.selectProject("Test project 1 (test1) ")
-    await pm.onPlanningPage.selectUser(["Test people 1 - user1", "Test people 2 - user2"])
+    await pm.onPlanningPage.enterTitle(addTaskInfo.TaskTitle)
+    await pm.onPlanningPage.selectProject("Call of duty (COD) ") //TODO: hard data, improve later
+    await pm.onPlanningPage.selectUser(["John Wick - user1", "Mary Adams - user2"]) //TODO: hard data, improve later
 
     printLog("VP: Verify modal title")
     await pm.onPlanningPage.verifyModalTitle("New task")
