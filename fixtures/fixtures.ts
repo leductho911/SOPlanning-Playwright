@@ -1,19 +1,19 @@
 import { test as base } from '@playwright/test'
 import { PageManager } from '../pages/page_manager'
 import { printLog } from '../utils/logger'
-import { LoginPage } from '../pages/login_page';
+import { APIs } from '../utils/apis'
 
 // Declare the types of your fixtures.
 type MyFixtures = {
-  pm: PageManager;
-  loginPageFixture: LoginPage;
+  pm: PageManager
+  api: APIs
 };
 
-// Extend basic test by providing "pm" and "loginPage" fixture.
+// Extend basic test by providing "pm" and "api" fixture.
 export const test = base.extend<MyFixtures>({
   pm: async ({ page }, use) => {
     // Set up the fixture.
-    const pageManager = new PageManager(page);
+    const pageManager = new PageManager(page)
     await pageManager.navigateTo.loginPage()
     await pageManager.onLoginPage.login()
     await use(pageManager)
@@ -21,11 +21,14 @@ export const test = base.extend<MyFixtures>({
     // Clean up the fixture.
     // await pageManager.removeSomething() will run after the test
   },
-  loginPageFixture: async ({ page }, use) => {
-    await use(new LoginPage(page));
+  api: async ({}, use) => {
+    const api = new APIs()
+    await api.init()
+    await use(api)
   },
-});
-export { expect } from '@playwright/test';
+})
+
+export { expect } from '@playwright/test'
 
 // Hooks for setup and teardown
 test.beforeAll(async () => {
@@ -35,11 +38,3 @@ test.beforeAll(async () => {
 test.afterAll(async () => {
   printLog("After all : Test suite cleanup completed.")
 })
-
-// Hook for actions before each test
-test.beforeEach(async ({loginPageFixture}) => {
-  printLog("Before each test setup...")
-  // await loginPage.login()
-  // example use fixture "loginPageFixture"
-  // can use loginPageFixture in test spec
-});

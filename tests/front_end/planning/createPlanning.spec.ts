@@ -1,6 +1,6 @@
-import { test } from '../../fixtures/fixtures';
-import { printLog } from '../../utils/logger';
-import { AddTaskInfo, initAddTaskInfo } from '../../utils/types';
+import { test } from '../../../fixtures/fixtures';
+import { printLog } from '../../../utils/logger';
+import { AddTaskInfo, initAddTaskInfo } from '../../../utils/types';
 
 let addTaskInfo: AddTaskInfo
 

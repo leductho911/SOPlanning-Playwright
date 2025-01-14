@@ -1,4 +1,4 @@
-import { APIRequestContext, APIResponse, expect } from "@playwright/test";
+import { APIRequestContext, APIResponse, expect, request } from "@playwright/test";
 import ENV from "./env";
 import { printLog } from "./logger";
 import { AddTaskInfo } from "./types";
@@ -7,9 +7,14 @@ import { AddTaskInfo } from "./types";
 export class APIs {
 
     private apiURL: string
+    private request: APIRequestContext
 
     constructor() {
         this.apiURL = `${ENV.BASE_URL}/api/endpoint`
+    }
+
+    public async init(){
+        this.request = await request.newContext()
     }
 
     /**
@@ -18,10 +23,10 @@ export class APIs {
      * @param {string} taskID - The unique identifier for the task whose information is to be retrieved.
      * @returns {Promise<APIResponse>} - A promise that resolves with the response from the API if successful, or a rejected promise if not.
      */
-    public async getTaskAPI(request: APIRequestContext, taskID: string): Promise<APIResponse> {
+    public async getTaskAPI(taskID: string): Promise<APIResponse> {
         try {
             printLog("  [API] Send request : Get task info")
-            return await request.get(`${this.apiURL}/tasks/${taskID}`)
+            return await this.request.get(`${this.apiURL}/tasks/${taskID}`)
         } catch (error) {
             printLog(`  [API] Error getting task ID ${taskID}: ${error}`, 'error')
             throw error
@@ -35,10 +40,10 @@ export class APIs {
      * @param {AddTaskInfo} taskInfo - The information about the task to add or update.
      * @returns {Promise<APIResponse>} - The response from the API if successful, or a rejected promise if not.
      */
-    public async addUpdateTaskAPI(request: APIRequestContext, taskInfo: AddTaskInfo): Promise<APIResponse> {
+    public async addUpdateTaskAPI(taskInfo: AddTaskInfo): Promise<APIResponse> {
         try {
             printLog("  [API] Send request : Add/Update task")
-            return await request.post(`${this.apiURL}/tasks`, {
+            return await this.request.post(`${this.apiURL}/tasks`, {
                 form: {
                     task_id: taskInfo.TaskID,
                     link_id: "",
@@ -64,10 +69,10 @@ export class APIs {
      * @param {string} taskID - The unique identifier for the task to be deleted.
      * @returns {Promise<APIResponse>} - The response from the API if successful, or a rejected promise if not.
      */
-    public async deleteTaskAPI(request: APIRequestContext, taskID: string): Promise<APIResponse> {
+    public async deleteTaskAPI(taskID: string): Promise<APIResponse> {
         try {
             printLog("  [API] Send request : Delete task")
-            return await request.delete(`${this.apiURL}/tasks/${taskID}`)
+            return await this.request.delete(`${this.apiURL}/tasks/${taskID}`)
         } catch (error) {
             printLog(`  [API] Error deleting task: ${error}`, 'error')
             throw error
