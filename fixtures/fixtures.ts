@@ -32,9 +32,8 @@ test.beforeAll(async () => {
   printLog("Before all: Starting test suite setup...")
 })
 
-test.afterAll(async ({page}) => {
-  printLog("Aftet all : Test suite cleanup completed.")
-  await page.close()
+test.afterAll(async () => {
+  printLog("After all : Test suite cleanup completed.")
 })
 
 // Hook for actions before each test
