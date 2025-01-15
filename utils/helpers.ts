@@ -7,12 +7,12 @@ export class DateHelpers {
      * @description Get the current date in a specified format
      * @param {string} format The date format to return. Defaults to 'YYYY-MM-DD'
      * @param {number} daysOffset The number of days to offset the current date. Defaults to 0
-     * @returns {Promise<string>} The current date in the specified format
+     * @returns {string} The current date in the specified format
      * @example
      * const date = await DateHelpers.getCurrentDate('YYYY-MM-DD')
      * const date = await DateHelpers.getCurrentDate('DD-MM-YYYY', 3)
      */
-    public async getCurrentDate(format: string = 'YYYY-MM-DD', daysOffset: number = 0): Promise<string> {
+    public static getCurrentDate(format: string = 'YYYY-MM-DD', daysOffset: number = 0): string {
         const today = new Date()
         today.setDate(today.getDate() + daysOffset)
 

@@ -21,7 +21,6 @@ export interface AddTaskInfo {
 }
 
 export async function initAddTaskInfo(options?: Partial<AddTaskInfo>): Promise<AddTaskInfo> {
-    const dateHelpers = new DateHelpers()
 
     const defaults = {
         TaskTitle: faker.lorem.sentence(3),
@@ -29,8 +28,8 @@ export async function initAddTaskInfo(options?: Partial<AddTaskInfo>): Promise<A
         UserID: `${ENV.DEFAULT_USER_ID}`,
         UserName: `${ENV.DEFAULT_USER_NAME}`,
         ProjectID: `${ENV.DEFAULT_PROJECT_ID}`,
-        StartDate: await dateHelpers.getCurrentDate(),
-        EndDate: await dateHelpers.getCurrentDate("YYYY-MM-DD", 1),
+        StartDate: DateHelpers.getCurrentDate(),
+        EndDate: DateHelpers.getCurrentDate("YYYY-MM-DD", 1),
         StatusID: "todo",
         Duration: "08:00",
         TaskDescription: faker.lorem.paragraphs({min: 1, max: 5}),
