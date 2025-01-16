@@ -4,6 +4,5 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .env.development
-.env.production
-.env.test
+.env.staging
 .DS_Store

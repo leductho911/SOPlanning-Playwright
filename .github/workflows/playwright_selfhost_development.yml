@@ -1,7 +1,7 @@
-name: Playwright Tests on Self-Hosted
+name: Playwright Tests on Self-Hosted (Development)
 on:
-  push:
-    branches: [ main, master ]
+  # push:
+  #   branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
@@ -29,7 +29,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npm run test:chrome
+      run: npm run test:development
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
