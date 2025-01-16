@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:development": "cross-env test_env=development npx playwright test",
-    "test:production": "cross-env test_env=production npx playwright test",
-    "test:chrome": "npx playwright test tests/front_end --project=chromium",
+    "test:development": "cross-env test_env=development npx playwright test tests/front_end --project=chromium",
+    "test:staging": "cross-env test_env=staging npx playwright test tests/front_end --project=chromium",
+    "test:firefox": "npx playwright test tests/front_end --project=firefix",
     "_comment": "the test:api is the child script, read more at cross-env docs",
     "test:apidevelopment": "cross-env test_env=development npm run test:api",
-    "test:apiproduction": "cross-env test_env=production npm run test:api",
-    "test:api": "npx playwright test --project=chromium -g \"@api_critical\" --workers=1"
+    "test:apistaging": "cross-env test_env=staging npm run test:api",
+    "test:api": "npx playwright test -g \"@api_critical\" --workers=1"
   },
   "keywords": [],
   "author": "",
