@@ -4,6 +4,13 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  BASE_URL: ${{ vars.BASE_URL }}
+  USERNAME: ${{ vars.USERNAME }}
+  PASSWORD: ${{ vars.PASSWORD }}
+
 jobs:
   test:
     timeout-minutes: 60
