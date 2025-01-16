@@ -1,7 +1,7 @@
 import { FullConfig } from "@playwright/test";
 
-// @ts-ignore
 import dotenv from "dotenv"
+import { printLog } from "./logger";
 
 
 async function globalSetup(config: FullConfig) {
@@ -11,15 +11,17 @@ async function globalSetup(config: FullConfig) {
             dotenv.config({
                 path: `.env.${process.env.test_env}`,
                 override: true
-            });
+            })
+            printLog(`[globalSetup] Loaded environment variables from .env.${process.env.test_env}`)
         } else {
             dotenv.config({
                 path: `.env.development`,
                 override: true
-            });
+            })
+            printLog(`[globalSetup] Loaded environment variables from .env.development`)
         }
     } catch (error) {
-        console.error("Error loading environment variables:", error);
+        printLog(`[globalSetup] Error loading environment variables: ${error}`, 'error')
     }
 }
 export default globalSetup;

@@ -5,7 +5,12 @@
   "scripts": {
     "test:test": "cross-env test_env=test npx playwright test",
     "test:development": "cross-env test_env=development npx playwright test",
-    "test:production": "cross-env test_env=production npx playwright test"
+    "test:production": "cross-env test_env=production npx playwright test",
+    "test:chrome": "npx playwright test tests/front_end --project=chromium --headed",
+    "_comment": "the test:api is the child script, read more at cross-env docs",
+    "test:apitest": "cross-env test_env=test npm run test:api",
+    "test:apiproduction": "cross-env test_env=production npm run test:api",
+    "test:api": "npx playwright test --project=chromium -g \"@api_critical\" --workers=1"
   },
   "keywords": [],
   "author": "",

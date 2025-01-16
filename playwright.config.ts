@@ -11,6 +11,9 @@ export default defineConfig({
   use: {
     trace: 'on-first-retry',
     baseURL: ENV.BASE_URL, // get from global setup and pass to baseURL for the test file use it
+    extraHTTPHeaders: {
+      'SOPLANNING-API': `${ENV.API_KEY}`,
+    },
   },
   globalSetup: "utils/globalSetup.ts", // globalSetup need for environment variables
 
