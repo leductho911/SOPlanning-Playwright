@@ -5,7 +5,7 @@
   "scripts": {
     "test:development": "cross-env test_env=development npx playwright test tests/front_end --project=chromium",
     "test:staging": "cross-env test_env=staging npx playwright test tests/front_end --project=chromium",
-    "test:firefox": "npx playwright test tests/front_end --project=firefix",
+    "test:firefox": "npx playwright test tests/front_end --project=firefox",
     "_comment": "the test:api is the child script, read more at cross-env docs",
     "test:apidevelopment": "cross-env test_env=development npm run test:api",
     "test:apistaging": "cross-env test_env=staging npm run test:api",

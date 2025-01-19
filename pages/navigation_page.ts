@@ -23,7 +23,7 @@ export class NavigationPage extends BasePage{
     }
 
     async loginPage(){
-        printLog(' [NavigationPage: navigate to Login page]');
+        printLog(` [NavigationPage: navigated to : ${ENV.BASE_URL}]`)
         await this.openPage(`${ENV.BASE_URL}`)
     }
 

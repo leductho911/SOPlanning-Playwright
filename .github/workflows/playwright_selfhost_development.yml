@@ -1,4 +1,4 @@
-name: Playwright Tests on Self-Hosted (Development)
+name: Playwright Tests on Ubuntu (Development)
 on:
   # push:
   #   branches: [ main, master ]
@@ -7,7 +7,7 @@ on:
 
 env:
     # Setting an environment variable with the value of a configuration variable
-    BASE_URL: ${{ vars.BASE_URL }}
+    BASE_URL: ${{ vars.BASE_URL_DEV }}
     USERNAME: ${{ vars.USERNAME }}
     DEFAULT_USER_ID: ${{ vars.DEFAULT_USER_ID }}
     DEFAULT_USER_NAME: ${{ vars.DEFAULT_USER_NAME }}
@@ -18,7 +18,7 @@ env:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
